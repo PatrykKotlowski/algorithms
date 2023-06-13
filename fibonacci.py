@@ -44,6 +44,19 @@ def tabulation_fibonacci(n):
     return memory[n-1] + memory[n-2]
 
 
+def tabulation_only_two_values_fibonacci(n):
+    """Tabulation implementation of fibonacci with storing only two values."""
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    previous, previous_previous = 1, 0
+    for i in range(2, n):
+        previous, previous_previous = previous + previous_previous, previous
+
+    return previous + previous_previous
+
+
 def test_fibonacci(fibonacci: Callable[[int], int]):
     """
     Test fibonacci function
@@ -64,3 +77,4 @@ if __name__ == '__main__':
     test_fibonacci(basic_fibonacci)
     test_fibonacci(memoization_fibonacci)
     test_fibonacci(tabulation_fibonacci)
+    test_fibonacci(tabulation_only_two_values_fibonacci)
