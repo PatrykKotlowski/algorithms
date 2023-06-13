@@ -30,6 +30,20 @@ def memoization_fibonacci(n):
     return helper(n)
 
 
+def tabulation_fibonacci(n):
+    """Tabulation implementation of fibonacci sequence."""
+    memory = {}
+
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    memory[0], memory[1] = 0, 1
+    for i in range(2, n):
+        memory[i] = memory[i-1] + memory[i-2]
+    return memory[n-1] + memory[n-2]
+
+
 def test_fibonacci(fibonacci: Callable[[int], int]):
     """
     Test fibonacci function
@@ -49,3 +63,4 @@ def test_fibonacci(fibonacci: Callable[[int], int]):
 if __name__ == '__main__':
     test_fibonacci(basic_fibonacci)
     test_fibonacci(memoization_fibonacci)
+    test_fibonacci(tabulation_fibonacci)
